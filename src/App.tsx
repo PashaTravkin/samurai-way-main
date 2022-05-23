@@ -6,12 +6,10 @@ import {Profile} from "./components/Profile";
 
 function App() {
     return (
-        <div className="app-wraper">
+        <div className="app-wrapper">
             <Header/>
             <Nav/>
             <Profile/>
-
-
         </div>
     );
 }

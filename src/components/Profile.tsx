@@ -6,7 +6,10 @@ export let Profile = ()=>{
                 src="https://besthqwallpapers.com/Uploads/31-3-2021/160338/thumb2-social-networks-blue-background-social-networks-icons-blue-light-globe-global-networks.jpg"
                 alt=""/></div>
             <div className='workingArea' >
-                <div>ava+description</div>
+                <div>
+                    <div><img src="" alt=""/> </div>
+                    <div>Diskription</div>
+                </div>
                 <div>My post</div>
                 <div>New post</div>
                 <div>post1</div>
