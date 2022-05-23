@@ -1,6 +1,6 @@
 import React from "react";
 
-export let Nav = () => {
+export let Navbar = () => {
     return (
         <>
             <nav>
