@@ -7,7 +7,7 @@ export let MyPosts = () => {
             <div>My post</div>
             <div>New post</div>
             <Post />
-            <div>post2</div>
+            <Post />
         </div>
     )
 }
