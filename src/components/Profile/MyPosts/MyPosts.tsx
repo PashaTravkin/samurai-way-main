@@ -5,7 +5,10 @@ export let MyPosts = () => {
     return (
         <div>
             <div>My post</div>
-            <div>New post</div>
+            <div>
+                <textarea/>
+                <button>Send post</button>
+            </div>
             <Post />
             <Post />
         </div>
