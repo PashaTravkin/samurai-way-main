@@ -1,32 +1,15 @@
-nav {
-    padding: 15px;
-    grid-area: nav;
-    background: rosybrown;
+.dialogWrapper{
+    display: grid;
+    grid-template-areas: "p d";
+    grid-template-columns: 2fr 10fr;
+    margin: 20px;
 }
 
-nav div {
-    margin-left: 15px;
-    margin-top: 10px;
-    font-size: 18px;
+.toldPerson {
+    grid-area: p;
+    padding-bottom: 5px;
 }
 
-nav div a {
-    color: aqua;
-    text-decoration: none;
-}
-
-nav div a:hover {
-    color: black;
-    text-decoration: none;
-}
-
-.itemBar {
-    font-weight: 500;
-    letter-spacing: 2px;
-}
-
-.active {
-    font-family: "Arial Black";
-    font-size: 25px;
-    color: #fa0f63;
+s.dialogs{
+    grid-area: d;
 }

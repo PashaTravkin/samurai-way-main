@@ -1,9 +1,6 @@
 import React from "react";
 import {Post} from "./Post/Post";
 
-export type objectType = {
-    first:string
-}
 const communication =[
     {first:"Hello, how are you?"},
     {first:' What\'s your name?'}
@@ -19,8 +16,8 @@ export let MyPosts = () => {
                 <textarea/>
                 <button>Send post</button>
             </div>
-            <Post comm = {communication}/>
-            <Post comm = {communication}/>
+            <Post comm={communication[0]}/>
+            <Post comm={communication[1]}/>
         </div>
     )
 }
