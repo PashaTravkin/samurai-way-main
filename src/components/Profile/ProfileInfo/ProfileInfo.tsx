@@ -1,4 +1,4 @@
-import classes from "./ProfileInfo.css";
+import classes from "./ProfileInfo.module.css";
 import React from "react";
 
 export let ProfileInfo = () => {
