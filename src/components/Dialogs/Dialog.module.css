@@ -1,15 +1,16 @@
-.dialogWrapper{
+.dialogs {
     display: grid;
     grid-template-areas: "p d";
     grid-template-columns: 2fr 10fr;
     margin: 20px;
 }
 
-.toldPerson {
+.dialog {
+
     grid-area: p;
     padding-bottom: 5px;
 }
 
-s.dialogs{
+s.messages {
     grid-area: d;
 }
