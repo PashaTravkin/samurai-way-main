@@ -19,8 +19,7 @@ export let MyPosts = () => {
                     <button>Send post</button>
                 </div>
             </div>
-            <Post id ={postData[0].id} postData={postData[0].message} likesCount={postData[0].likesCount}/>
-            <Post id ={postData[1].id} postData={postData[1].message} likesCount={postData[0].likesCount}/>
+            {postData.map(p=><Post id ={p.id} postData={p.message} likesCount={p.likesCount}/>)}
         </div>
     )
 }
