@@ -9,18 +9,43 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 
-function App() {
+
+export type MyPostPropsType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+
+export type dialogsDataType = {
+    id: number,
+    name: string
+}
+
+export type messagesDataType = {
+    id: number,
+    message: string
+}
+
+export type AppPropsType = {
+    postsData: Array<MyPostPropsType>
+    dialogsData: Array<dialogsDataType>
+    messagesData: Array<messagesDataType>
+}
+
+
+function App(props: AppPropsType) {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className={"mainPages"}>
-                    <Route path={'/profile'} component={Profile}/>
-                    <Route path={'/dialogs'} component={Dialogs}/>
-                    <Route path={'/news'} component={News}/>
-                    <Route path={'/music'} component={Music}/>
-                    <Route path={'/settings'} component={Settings}/>
+                    <Route path={'/profile'} render={() => <Profile postsData={props.postsData}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs dialogsData={props.dialogsData}
+                                                                    messagesData={props.messagesData}/>}/>
+                    <Route path={'/news'} render={() => <News/>}/>
+                    <Route path={'/music'} render={() => <Music/>}/>
+                    <Route path={'/settings'} render={() => <Settings/>}/>
 
                 </div>
 

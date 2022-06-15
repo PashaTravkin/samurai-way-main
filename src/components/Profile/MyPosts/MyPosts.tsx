@@ -1,12 +1,9 @@
 import React from "react";
 import {Post} from "./Post/Post";
+import {ProfilePropsType} from "../Profile";
 
-const postData = [
-    {id: 3, message: "Hello, how are you?", likesCount: 1},
-    {id: 4, message: ' What\'s your name?', likesCount: 5}
-]
 
-export let MyPosts = () => {
+export let MyPosts:React.FC<ProfilePropsType> = (props) => {
 
     return (
         <div>
@@ -19,8 +16,7 @@ export let MyPosts = () => {
                     <button>Send post</button>
                 </div>
             </div>
-            <Post id ={postData[0].id} postData={postData[0].message} likesCount={postData[0].likesCount}/>
-            <Post id ={postData[1].id} postData={postData[1].message} likesCount={postData[0].likesCount}/>
+            {props.postsData.map(p => <Post id={p.id} postData={p.message} likesCount={p.likesCount}/>)}
         </div>
     )
 }

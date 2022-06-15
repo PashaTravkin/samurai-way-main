@@ -2,8 +2,13 @@ import React from "react";
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
+import {MyPostPropsType} from "../../App";
 
-export let Profile = () => {
+export type ProfilePropsType={
+    postsData:Array<MyPostPropsType>
+}
+
+export let Profile:React.FC<ProfilePropsType> = (props) => {
     return (
         < div className={classes.content}>
             <div className={classes.mainImgInContent}><img
@@ -11,7 +16,7 @@ export let Profile = () => {
                 alt=""/></div>
             <div className={classes.workingArea}>
                 <ProfileInfo/>
-                <MyPosts/>
+                <MyPosts postsData={props.postsData}/>
             </div>
         </div>
     )
