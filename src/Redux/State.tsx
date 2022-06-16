@@ -6,11 +6,11 @@ const state = {
         ]},
     messagesPage:{
         dialogsData:[
-            {id: 1, name: 'Sasha'},
-            {id: 2, name: 'Masha'},
-            {id: 3, name: 'Lera'},
-            {id: 4, name: 'Nika'},
-            {id: 5, name: 'Dasha'}
+            {id: 1, name: 'Sasha', avatar: 'https://bipbap.ru/wp-content/uploads/2021/07/1551512888_2-730x617.jpg'},
+            {id: 2, name: 'Masha', avatar: 'https://shapka-youtube.ru/wp-content/uploads/2021/02/prikolnaya-avatarka-dlya-patsanov.jpg'},
+            {id: 3, name: 'Lera', avatar: 'https://sun9-60.userapi.com/s/v1/if2/X5eLXzG9LeAKYth6RI12p85xPr3g8BKTUmR9tk4UBwKZCm3ZTKH06tdV2M5qQ8DWBzeGtlPcNFfmkikTc6Q4Jy8A.jpg?size=604x604&quality=96&type=album'},
+            {id: 4, name: 'Nika', avatar: 'https://mixmag.io/wp-content/pics/75268/image089-13-720x720.jpg'},
+            {id: 5, name: 'Dasha', avatar: 'https://meragor.com/files/styles//220_220_bottom_wm/_1_24.jpg'}
         ],
         messagesData:[
             {id: 1, message: 'Hi, how are you???'},

@@ -9,15 +9,19 @@ type DialogsPropsType = {
     messagesData: Array<messagesDataType>
 }
 
-const Dialogs: React.FC<DialogsPropsType> = (props) => {
+type statePropsType={
+    state:DialogsPropsType
+}
+
+const Dialogs: React.FC<statePropsType> = (props) => {
 
     return (
         <div className={s.dialogs}>
             <div className={s.dialogsItems}>
-                {props.dialogsData.map(d => <DialogItem name={d.name} id={d.id}/>)}
+                {props.state.dialogsData.map(d => <DialogItem avatar={d.avatar} name={d.name} id={d.id}/>)}
             </div>
             <div className={s.messages}>
-                {props.messagesData.map(m => <Message message={m.message}/>)}
+                {props.state.messagesData.map(m => <Message message={m.message}/>)}
             </div>
         </div>
     )

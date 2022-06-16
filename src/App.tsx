@@ -18,7 +18,8 @@ export type MyPostPropsType = {
 
 export type dialogsDataType = {
     id: number,
-    name: string
+    name: string,
+    avatar?: string
 }
 
 export type messagesDataType = {
@@ -53,8 +54,7 @@ function App(props: allAppPropsType) {
                 <Navbar/>
                 <div className={"mainPages"}>
                     <Route path={'/profile'} render={() => <Profile postsData={props.state.profilePage.postsData}/>}/>
-                    <Route path={'/dialogs'} render={() => <Dialogs dialogsData={props.state.messagesPage.dialogsData}
-                                                                    messagesData={props.state.messagesPage.messagesData}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs state={props.state.messagesPage}/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>

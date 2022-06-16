@@ -5,12 +5,17 @@
     margin: 20px;
 }
 
+.dialogsItems {
+    border-right: 2px solid black;
+}
+
 .dialog {
 
     grid-area: p;
-    padding-bottom: 5px;
 }
 
-s.messages {
+.messages {
     grid-area: d;
+    margin-left: 20px;
 }
+

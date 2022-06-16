@@ -1,0 +1,27 @@
+
+.ava{
+    width: 40px;
+    height: 40px;
+    border-radius: 15px;
+}
+
+.dialog{
+    padding-bottom: 5px;
+}
+
+.dialog a{
+    padding-bottom: 5px;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.active {
+    font-size: 18px;
+    color: #5eff9a;
+}
+
+.dialog a span:hover {
+    color: black;
+    text-decoration: none;
+}
+
