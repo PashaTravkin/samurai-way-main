@@ -26,29 +26,39 @@ export type messagesDataType = {
     message: string
 }
 
-export type AppPropsType = {
-    postsData: Array<MyPostPropsType>
+export type AppMessagePagePropsType = {
     dialogsData: Array<dialogsDataType>
     messagesData: Array<messagesDataType>
 }
 
+type profilePageType = {
+    postsData: Array<MyPostPropsType>,
+}
 
-function App(props: AppPropsType) {
+type AppPropsType = {
+    profilePage:profilePageType,
+    messagesPage:AppMessagePagePropsType
+}
+
+export type allAppPropsType = {
+    state: AppPropsType
+}
+
+
+function App(props: allAppPropsType) {
     return (
         <BrowserRouter>
             <div className="app-wrapper">
                 <Header/>
                 <Navbar/>
                 <div className={"mainPages"}>
-                    <Route path={'/profile'} render={() => <Profile postsData={props.postsData}/>}/>
-                    <Route path={'/dialogs'} render={() => <Dialogs dialogsData={props.dialogsData}
-                                                                    messagesData={props.messagesData}/>}/>
+                    <Route path={'/profile'} render={() => <Profile postsData={props.state.profilePage.postsData}/>}/>
+                    <Route path={'/dialogs'} render={() => <Dialogs dialogsData={props.state.messagesPage.dialogsData}
+                                                                    messagesData={props.state.messagesPage.messagesData}/>}/>
                     <Route path={'/news'} render={() => <News/>}/>
                     <Route path={'/music'} render={() => <Music/>}/>
                     <Route path={'/settings'} render={() => <Settings/>}/>
-
                 </div>
-
             </div>
         </BrowserRouter>
     );
