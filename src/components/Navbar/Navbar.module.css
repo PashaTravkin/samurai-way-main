@@ -4,7 +4,7 @@ nav {
     background: rosybrown;
 }
 
-nav div {
+.links {
     margin-left: 15px;
     margin-top: 10px;
     font-size: 18px;
@@ -29,4 +29,33 @@ nav div a:hover {
     font-family: "Arial Black";
     font-size: 25px;
     color: #fa0f63;
+}
+
+.titleFriends{
+    margin:40px 0 -10px 30%;
+    font-family: Algerian;
+    font-size: 26px;
+    font-weight: bold;
+    letter-spacing: 5px;
+}
+
+.theBestFriends{
+    margin-top: 30px;
+    /*border: 1px solid red;*/
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.theBestFriends div img {
+    border-radius: 30px;
+    width: 50px;
+    height: 50px;
+    margin-bottom: -3px;
+}
+
+.theBestFriend{
+    /*border: 1px solid blue;*/
+    display: flex;
+    flex-direction: column;
 }

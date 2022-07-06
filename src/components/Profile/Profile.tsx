@@ -2,10 +2,12 @@ import React from "react";
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostPropsType} from "../../App";
+import {MyPostPropsType} from "../../Redux/State";
+
 
 export type ProfilePropsType={
     postsData:Array<MyPostPropsType>
+    addPost:(value:string)=>void
 }
 
 export let Profile:React.FC<ProfilePropsType> = (props) => {
@@ -16,7 +18,7 @@ export let Profile:React.FC<ProfilePropsType> = (props) => {
                 alt=""/></div>
             <div className={classes.workingArea}>
                 <ProfileInfo/>
-                <MyPosts postsData={props.postsData}/>
+                <MyPosts addPost ={props.addPost} postsData={props.postsData}/>
             </div>
         </div>
     )
