@@ -28,6 +28,7 @@ export let addPosts = addPost
                         <Route path={'/music'} render={() => <Music/>}/>
                         <Route path={'/settings'} render={() => <Settings/>}/>
                     </div>
+                    <div>Hello, How are you?????</div>
                 </div>
             </BrowserRouter>
         );
