@@ -1,7 +1,7 @@
 import {rerenderEntireTreeType} from "../index";
-
-const NEW_POST_TEXT = 'NEW_POST_TEXT'
-const ADD_POST = 'ADD_POST'
+import SidebarReducer from "./SidebarReducer";
+import ProfileReducer from "./ProfileReducer";
+import DialogsReducer from "./DialogsReducer";
 
 export type MyPostPropsType = {
     id: number,
@@ -24,9 +24,10 @@ export type messagesDataType = {
 export type AppMessagePagePropsType = {
     dialogsData: Array<dialogsDataType>
     messagesData: Array<messagesDataType>
+    newMessageDialogText: string
 }
 
-type profilePageType = {
+export type profilePageType = {
     newText: string
     postsData: Array<MyPostPropsType>,
 }
@@ -46,7 +47,7 @@ export type AppPropsType = {
 
 export type allAppPropsType = {
     state: AppPropsType
-    dispatch: (action: AddPostActionType | NewPostTextActionType) => void
+    dispatch: (action: ActionsType) => void
 }
 
 type storeType = {
@@ -57,15 +58,29 @@ type storeType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType = AddPostActionType | NewPostTextActionType
+export type ActionsType =
+    AddPostActionType
+    | NewPostTextActionType
+    | NewMessageDialogTextActionType
+    | AddMessageDialogActionType
 
-type AddPostActionType = {
-    type: 'ADD_POST'
-}
-type NewPostTextActionType = {
-    type: 'NEW_POST_TEXT'
-    newText: string
-}
+type AddPostActionType = ReturnType<typeof addPostAC>
+type NewPostTextActionType = ReturnType<typeof onChangeTextHandlerAC>
+type NewMessageDialogTextActionType = ReturnType<typeof newMessageDialogTextAC>
+type AddMessageDialogActionType = ReturnType<typeof addMessageDialogAC>
+
+export const addPostAC = () => ({type: 'ADD_POST'} as const)
+//это короткая запись без return
+
+export const onChangeTextHandlerAC = (text: string) => ({type: 'NEW_POST_TEXT', newText: text} as const)
+//это короткая запись без return
+
+export const addMessageDialogAC = () => ({type: 'ADD_MESSAGE_DIALOG'} as const)
+
+export const newMessageDialogTextAC = (text: string) => ({
+    type: 'NEW_MESSAGE_DIALOG_TEXT',
+    newDialogText: text
+} as const)
 
 export let store: storeType = {
     _state: {
@@ -112,7 +127,8 @@ export let store: storeType = {
                     message: 'I am fine too)',
                     avatarMessage: 'https://mixmag.io/wp-content/pics/75268/image089-13-720x720.jpg'
                 },
-            ]
+            ],
+            newMessageDialogText: ''
         },
         sidebar: [
             {
@@ -143,26 +159,13 @@ export let store: storeType = {
     },
 
     dispatch(action) {
-        if (action.type === ADD_POST) {
-            let messageAdd = {id: 7, message: this._state.profilePage.newText, likesCount: 6}
-            this._state.profilePage.postsData.push(messageAdd)
-            this._state = {...this._state}
-            this._callSubscriber()
-            this._state.profilePage.newText = ''
-            this._callSubscriber()
-        } else if (action.type === NEW_POST_TEXT) {
-            this._state.profilePage.newText = action.newText
-            this._callSubscriber()
-        }
-    },
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
+        this._state.dialogsPage = DialogsReducer(this._state.dialogsPage, action)
+        this._state.sidebar = SidebarReducer(this._state.sidebar, action)
+        this._callSubscriber()
+    }
 }
 
-type AddPostACType = () => { type: typeof ADD_POST }
-export const addPostAC: AddPostACType = () => ({type: ADD_POST})  //это короткая запись без return
-
-type OnChangeTextHandlerACType = (text: string) => { type: typeof NEW_POST_TEXT, newText: string }
-export const onChangeTextHandlerAC: OnChangeTextHandlerACType = (text) =>
-    ({type: NEW_POST_TEXT, newText: text}) //это короткая запись без return
 
 
 

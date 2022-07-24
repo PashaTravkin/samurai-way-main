@@ -8,7 +8,7 @@ import Dialogs from "./components/Dialogs/Dialogs";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
-import {store, allAppPropsType} from "./Redux/State";
+import {allAppPropsType} from "./Redux/State";
 
 function App(props: allAppPropsType) {
 
@@ -23,7 +23,10 @@ function App(props: allAppPropsType) {
                              newText={props.state.profilePage.newText}
                     />}
                 />
-                <Route path={'/dialogs'} render={() => <Dialogs state={props.state.dialogsPage}/>}/>
+                <Route path={'/dialogs'} render={() =>
+                    <Dialogs state={props.state.dialogsPage}
+                             dispatch={props.dispatch}
+                    />}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>
