@@ -1,6 +1,14 @@
-import {ActionsType, profilePageType} from "./State";
+import {ActionsType, profilePageType} from "./Store";
 
-const ProfileReducer = (profileState:profilePageType, action:ActionsType) => {
+let initializeProfileState = {
+    newText: '',
+    postsData: [
+        {id: 3, message: "Hello, how are you?", likesCount: 1},
+        {id: 4, message: ' What\'s your name?', likesCount: 5}
+    ]
+}
+
+const ProfileReducer = (profileState:profilePageType=initializeProfileState, action:ActionsType) => {
     switch (action.type) {
         case 'ADD_POST':
             let messageAdd = {id: 7, message: profileState.newText, likesCount: 6}
@@ -14,5 +22,11 @@ const ProfileReducer = (profileState:profilePageType, action:ActionsType) => {
             return profileState
     }
 }
+
+export const addPostAC = () => ({type: 'ADD_POST'} as const)
+//это короткая запись без return
+
+export const onChangeTextHandlerAC = (text: string) => ({type: 'NEW_POST_TEXT', newText: text} as const)
+//это короткая запись без return
 
 export default ProfileReducer;
