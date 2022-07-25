@@ -1,4 +1,16 @@
-import {ActionsType, profilePageType} from "./Store";
+import {ActionsType} from "./ActionsType";
+
+
+export type MyPostPropsType = {
+    id: number,
+    message: string,
+    likesCount: number
+}
+
+export type profilePageType = {
+    newText: string
+    postsData: Array<MyPostPropsType>,
+}
 
 let initializeProfileState = {
     newText: '',

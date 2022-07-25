@@ -1,4 +1,10 @@
-import {ActionsType, sidebarType} from "./Store";
+import {ActionsType} from "./ActionsType";
+
+export type sidebarType = {
+    id: number,
+    name: string,
+    ava: string
+}
 
 let initializeSidebarState = [
     {

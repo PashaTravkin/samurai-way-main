@@ -2,16 +2,11 @@ import React from "react";
 import classes from "./Profile.module.css"
 import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {ActionsType, MyPostPropsType} from "../../Redux/Store";
+import {MyPostPropsType} from "../../Redux/ProfileReducer";
+import {ActionsType} from "../../Redux/ActionsType";
+import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-
-export type ProfilePropsType={
-    newText:string
-    postsData:Array<MyPostPropsType>
-    dispatch: (action:ActionsType)=>void
-}
-
-export let Profile:React.FC<ProfilePropsType> = (props) => {
+export let Profile= (props:any) => {
     return (
         < div className={classes.content}>
             <div className={classes.mainImgInContent}><img
@@ -19,9 +14,7 @@ export let Profile:React.FC<ProfilePropsType> = (props) => {
                 alt=""/></div>
             <div className={classes.workingArea}>
                 <ProfileInfo/>
-                <MyPosts newText = {props.newText}
-                         postsData={props.postsData}
-                         dispatch={props.dispatch}
+                <MyPostsContainer store = {props.store}
                 />
             </div>
         </div>

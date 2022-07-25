@@ -1,4 +1,4 @@
-import {ActionsType} from "./Store";
+import {ActionsType} from "./ActionsType";
 
 export type dialogsDataType = {
     id: number,

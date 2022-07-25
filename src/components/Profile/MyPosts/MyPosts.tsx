@@ -1,20 +1,24 @@
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
-import {ProfilePropsType} from "../Profile";
-import {addPostAC, onChangeTextHandlerAC} from "../../../Redux/ProfileReducer";
+import {profilePageType} from "../../../Redux/ProfileReducer";
 
+type MyPostsPropsType = {
+    onClickAddPost: () => void
+    onChangeTextHandler: (text: string) => void
+    state: profilePageType
+}
 
-export let MyPosts: React.FC<ProfilePropsType> = (props) => {
+export let MyPosts: React.FC<MyPostsPropsType> = (props) => {
+debugger
 
     let onClickAddPost = () => {
-        let action=addPostAC()
-        props.dispatch(action)
+        props.onClickAddPost()
     }
 
     const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        let text = e.currentTarget.value
-        let action = onChangeTextHandlerAC(text)
-        props.dispatch(action)
+    debugger
+        // let text = e.currentTarget.value
+        props.onChangeTextHandler(e.currentTarget.value)
     }
 
     return (
@@ -22,13 +26,13 @@ export let MyPosts: React.FC<ProfilePropsType> = (props) => {
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea value={props.newText} onChange={onChangeTextHandler} name="posts" id="1"></textarea>
+                    <textarea value={props.state.newText} onChange={onChangeTextHandler} name="posts" id="1"></textarea>
                 </div>
                 <div>
                     <button onClick={onClickAddPost}>Send post</button>
                 </div>
             </div>
-            {props.postsData.map(p => <Post id={p.id} postData={p.message} likesCount={p.likesCount}/>)}
+            {props.state.postsData.map(p => <Post id={p.id} postData={p.message} likesCount={p.likesCount}/>)}
         </div>
     )
 }

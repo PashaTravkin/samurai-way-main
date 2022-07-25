@@ -9,6 +9,11 @@ export type MyPostPropsType = {
     likesCount: number
 }
 
+export type profilePageType = {
+    newText: string
+    postsData: Array<MyPostPropsType>,
+}
+
 export type dialogsDataType = {
     id: number,
     name: string,
@@ -27,10 +32,7 @@ export type AppMessagePagePropsType = {
     newMessageDialogText: string
 }
 
-export type profilePageType = {
-    newText: string
-    postsData: Array<MyPostPropsType>,
-}
+
 
 export type sidebarType = {
     id: number,

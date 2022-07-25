@@ -18,9 +18,10 @@ function App(props: any) {
             <Navbar state={props.store.getState().sidebar}/>
             <div className={"mainPages"}>
                 <Route path={'/profile'} render={() =>
-                    <Profile dispatch={props.store.dispatch}
-                             postsData={props.store.getState().profilePage.postsData}
-                             newText={props.store.getState().profilePage.newText}
+                    <Profile store={props.store}
+                        // dispatch={props.store.dispatch}
+                        //      postsData={props.store.getState().profilePage.postsData}
+                        //      newText={props.store.getState().profilePage.newText}
                     />}
                 />
                 <Route path={'/dialogs'} render={() =>
