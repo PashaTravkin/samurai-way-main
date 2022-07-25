@@ -1,4 +1,22 @@
-import {ActionsType, AppMessagePagePropsType} from "./Store";
+import {ActionsType} from "./Store";
+
+export type dialogsDataType = {
+    id: number,
+    name: string,
+    avatar?: string
+}
+
+export type messagesDataType = {
+    id: number,
+    message: string,
+    avatarMessage: string
+}
+
+export type AppMessagePagePropsType = {
+    dialogsData: Array<dialogsDataType>
+    messagesData: Array<messagesDataType>
+    newMessageDialogText: string
+}
 
 let initializeDialogsState = {
     dialogsData: [
