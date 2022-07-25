@@ -1,7 +1,7 @@
 import {rerenderEntireTreeType} from "../index";
 import SidebarReducer from "./SidebarReducer";
-import ProfileReducer from "./ProfileReducer";
-import DialogsReducer from "./DialogsReducer";
+import ProfileReducer, {addPostAC, onChangeTextHandlerAC} from "./ProfileReducer";
+import DialogsReducer, {addMessageDialogAC, newMessageDialogTextAC} from "./DialogsReducer";
 
 export type MyPostPropsType = {
     id: number,
@@ -58,29 +58,12 @@ type storeType = {
     dispatch: (action: ActionsType) => void
 }
 
-export type ActionsType =
-    AddPostActionType
-    | NewPostTextActionType
-    | NewMessageDialogTextActionType
-    | AddMessageDialogActionType
+export type ActionsType = AddPostActionType| NewPostTextActionType| NewMessageDialogTextActionType| AddMessageDialogActionType
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type NewPostTextActionType = ReturnType<typeof onChangeTextHandlerAC>
 type NewMessageDialogTextActionType = ReturnType<typeof newMessageDialogTextAC>
 type AddMessageDialogActionType = ReturnType<typeof addMessageDialogAC>
-
-export const addPostAC = () => ({type: 'ADD_POST'} as const)
-//это короткая запись без return
-
-export const onChangeTextHandlerAC = (text: string) => ({type: 'NEW_POST_TEXT', newText: text} as const)
-//это короткая запись без return
-
-export const addMessageDialogAC = () => ({type: 'ADD_MESSAGE_DIALOG'} as const)
-
-export const newMessageDialogTextAC = (text: string) => ({
-    type: 'NEW_MESSAGE_DIALOG_TEXT',
-    newDialogText: text
-} as const)
 
 export let store: storeType = {
     _state: {

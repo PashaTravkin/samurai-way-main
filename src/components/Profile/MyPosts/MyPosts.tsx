@@ -1,7 +1,7 @@
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
 import {ProfilePropsType} from "../Profile";
-import {addPostAC, onChangeTextHandlerAC} from "../../../Redux/State";
+import {addPostAC, onChangeTextHandlerAC} from "../../../Redux/ProfileReducer";
 
 
 export let MyPosts: React.FC<ProfilePropsType> = (props) => {
