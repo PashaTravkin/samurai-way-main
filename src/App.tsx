@@ -8,24 +8,27 @@ import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
 import News from "./components/News/News";
 import DialogsContainer from "./components/Dialogs/DialogsContainer";
+import StoreContext from "./StoreContext";
 
-function App(props: any) {
+function App() {
     debugger
 
     return (
         <div className="app-wrapper">
             <Header/>
-            <Navbar state={props.store.getState().sidebar}/>
+            <StoreContext.Consumer>{
+                (store)=> {
+                return    <Navbar state={store.getState().sidebar}/>
+                }
+            }
+            </StoreContext.Consumer>
+
             <div className={"mainPages"}>
                 <Route path={'/profile'} render={() =>
-                    <Profile store={props.store}
-                        // dispatch={props.store.dispatch}
-                        //      postsData={props.store.getState().profilePage.postsData}
-                        //      newText={props.store.getState().profilePage.newText}
-                    />}
+                    <Profile/>}
                 />
                 <Route path={'/dialogs'} render={() =>
-                    <DialogsContainer store={props.store}/>}/>
+                    <DialogsContainer/>}/>
                 <Route path={'/news'} render={() => <News/>}/>
                 <Route path={'/music'} render={() => <Music/>}/>
                 <Route path={'/settings'} render={() => <Settings/>}/>

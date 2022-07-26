@@ -1,12 +1,9 @@
 import React from "react";
 import classes from "./Profile.module.css"
-import {MyPosts} from "./MyPosts/MyPosts";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import {MyPostPropsType} from "../../Redux/ProfileReducer";
-import {ActionsType} from "../../Redux/ActionsType";
 import {MyPostsContainer} from "./MyPosts/MyPostsContainer";
 
-export let Profile= (props:any) => {
+export let Profile= () => {
     return (
         < div className={classes.content}>
             <div className={classes.mainImgInContent}><img
@@ -14,8 +11,7 @@ export let Profile= (props:any) => {
                 alt=""/></div>
             <div className={classes.workingArea}>
                 <ProfileInfo/>
-                <MyPostsContainer store = {props.store}
-                />
+                <MyPostsContainer/>
             </div>
         </div>
     )

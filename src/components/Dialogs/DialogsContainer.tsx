@@ -1,6 +1,7 @@
 import React from "react";
 import Dialogs from "./Dialogs";
 import {addMessageDialogAC, newMessageDialogTextAC} from "../../Redux/DialogsReducer";
+import StoreContext from "../../StoreContext";
 
 // type DialogsPropsType = {
 //     dialogsData: Array<dialogsDataType>,
@@ -13,18 +14,23 @@ import {addMessageDialogAC, newMessageDialogTextAC} from "../../Redux/DialogsRed
 //     dispatch: (action: ActionsType) => void
 // }
 
-const DialogsContainer = (props:any) => {
-    let state = props.store.getState()
+const DialogsContainer = () => {
+    return <StoreContext.Consumer>
+        {
+        (store)=> {
+            let state = store.getState()
+            let onChangeMessage = (text: string) => {
+                const action = newMessageDialogTextAC(text)
+                store.dispatch(action)
+            }
 
-    let onChangeMessage = (text:string) => {
-        const action = newMessageDialogTextAC(text)
-        props.store.dispatch(action)
+            const onAddMessage = () => {
+                const action = addMessageDialogAC()
+                store.dispatch(action)
+            }
+        return  <Dialogs onChangeMessage={onChangeMessage} onAddMessage={onAddMessage} dialogsPages={state.dialogsPage}/>
+        }
     }
-
-    const onAddMessage = () => {
-        const action = addMessageDialogAC()
-        props.store.dispatch(action)
-    }
-return <Dialogs onChangeMessage={onChangeMessage} onAddMessage={onAddMessage} dialogsPages={state.dialogsPage}/>
+    </StoreContext.Consumer>
 }
 export default DialogsContainer
