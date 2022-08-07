@@ -1,7 +1,7 @@
 import React from "react";
 import store, {StoreType} from "./Redux/ReduxStore";
 
-const StoreContext =React.createContext(store)
+export const StoreContext =React.createContext(store)
 
 type ProviderType={
     store:StoreType

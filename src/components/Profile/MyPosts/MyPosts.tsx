@@ -1,11 +1,11 @@
 import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
-import {profilePageType} from "../../../Redux/ProfileReducer";
+import {ProfilePageType} from "../../../Redux/ProfileReducer";
 
 type MyPostsPropsType = {
     onClickAddPost: () => void
     onChangeTextHandler: (text: string) => void
-    state: profilePageType
+    state: ProfilePageType
 }
 
 export let MyPosts: React.FC<MyPostsPropsType> = (props) => {

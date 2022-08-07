@@ -12,7 +12,7 @@ export type messagesDataType = {
     avatarMessage: string
 }
 
-export type AppMessagePagePropsType = {
+export type AppMessagePageType = {
     dialogsData: Array<dialogsDataType>
     messagesData: Array<messagesDataType>
     newMessageDialogText: string
@@ -58,7 +58,7 @@ let initializeDialogsState = {
     newMessageDialogText: ''
 }
 
-const DialogsReducer = (dialogState:AppMessagePagePropsType =initializeDialogsState , action:ActionsType) => {
+const DialogsReducer = (dialogState:AppMessagePageType =initializeDialogsState , action:ActionsType):AppMessagePageType => {
     switch (action.type) {
         case 'NEW_MESSAGE_DIALOG_TEXT':
             dialogState.newMessageDialogText = action.newDialogText

@@ -7,7 +7,7 @@ export type MyPostPropsType = {
     likesCount: number
 }
 
-export type profilePageType = {
+export type ProfilePageType = {
     newText: string
     postsData: Array<MyPostPropsType>,
 }
@@ -20,7 +20,7 @@ let initializeProfileState = {
     ]
 }
 
-const ProfileReducer = (profileState:profilePageType=initializeProfileState, action:ActionsType) => {
+const ProfileReducer = (profileState:ProfilePageType=initializeProfileState, action:ActionsType):ProfilePageType => {
     switch (action.type) {
         case 'ADD_POST':
             let messageAdd = {id: 7, message: profileState.newText, likesCount: 6}

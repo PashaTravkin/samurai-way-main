@@ -1,36 +1,39 @@
 import React from "react";
 import Dialogs from "./Dialogs";
-import {addMessageDialogAC, newMessageDialogTextAC} from "../../Redux/DialogsReducer";
-import StoreContext from "../../StoreContext";
+import {addMessageDialogAC, AppMessagePageType, newMessageDialogTextAC} from "../../Redux/DialogsReducer";
+import {connect} from "react-redux";
+import {AppStateType} from "../../Redux/ReduxStore";
+import {Dispatch} from "redux";
 
-// type DialogsPropsType = {
-//     dialogsData: Array<dialogsDataType>,
-//     messagesData: Array<messagesDataType>
-//     newMessageDialogText: string
-// }
-//
-// type statePropsType = {
-//     state: DialogsPropsType
-//     dispatch: (action: ActionsType) => void
-// }
+export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-const DialogsContainer = () => {
-    return <StoreContext.Consumer>
-        {
-        (store)=> {
-            let state = store.getState()
-            let onChangeMessage = (text: string) => {
-                const action = newMessageDialogTextAC(text)
-                store.dispatch(action)
-            }
+type MapStateToPropsType={
+    dialogPages:AppMessagePageType
+}
 
-            const onAddMessage = () => {
-                const action = addMessageDialogAC()
-                store.dispatch(action)
-            }
-        return  <Dialogs onChangeMessage={onChangeMessage} onAddMessage={onAddMessage} dialogsPages={state.dialogsPage}/>
+let mapStateToProps = (state:AppStateType):MapStateToPropsType => {
+    debugger
+    return {
+        dialogPages:state.dialogsPage
+    }
+}
+
+type MapDispatchToPropsType ={
+    onChangeMessage:(text: string)=>void
+    onAddMessage:()=>void
+}
+
+let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
+    return {
+        onChangeMessage: (text: string) => {
+            const action = newMessageDialogTextAC(text)
+            dispatch(action)
+        },
+        onAddMessage:() => {
+            const action = addMessageDialogAC()
+            dispatch(action)
         }
     }
-    </StoreContext.Consumer>
 }
-export default DialogsContainer
+
+export let DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs)

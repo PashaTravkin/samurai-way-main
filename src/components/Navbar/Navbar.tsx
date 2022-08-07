@@ -7,6 +7,7 @@ import {sidebarType} from "../../Redux/SidebarReducer";
 type statePropsType = {state: Array<sidebarType>}
 
 export let Navbar = (props: statePropsType) => {
+    debugger
     return (
         <>
             <nav className={s.itemBar}>
