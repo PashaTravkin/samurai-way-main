@@ -3,10 +3,12 @@ import "./Navbar.module.css"
 import {NavLink} from "react-router-dom";
 import s from "./Navbar.module.css"
 import {sidebarType} from "../../Redux/SidebarReducer";
+import {connect} from "react-redux";
+import {AppStateType} from "../../Redux/ReduxStore";
 
-type statePropsType = {state: Array<sidebarType>}
 
-export let Navbar = (props: statePropsType) => {
+
+export let Navbar = (props:NavbarPropsType) => {
     debugger
     return (
         <>
@@ -20,18 +22,18 @@ export let Navbar = (props: statePropsType) => {
                 <div className={s.theBestFriends}>
 
                     <div className={s.theBestFriend}>
-                        <div><img src={props.state[0].ava}/></div>
-                        <div>{props.state[0].name}</div>
+                        <div><img src={props.sidebar[0].ava}/></div>
+                        <div>{props.sidebar[0].name}</div>
                     </div>
 
                     <div className={s.theBestFriend}>
-                        <div><img src={props.state[1].ava}/></div>
-                        <div>{props.state[1].name}</div>
+                        <div><img src={props.sidebar[1].ava}/></div>
+                        <div>{props.sidebar[1].name}</div>
                     </div>
 
                     <div className={s.theBestFriend}>
-                        <div><img src={props.state[2].ava}/></div>
-                        <div>{props.state[2].name}</div>
+                        <div><img src={props.sidebar[2].ava}/></div>
+                        <div>{props.sidebar[2].name}</div>
 
                     </div>
                 </div>
@@ -39,3 +41,23 @@ export let Navbar = (props: statePropsType) => {
         </>
     )
 }
+
+export type NavbarPropsType=mapStateToPropsType & mapDispatchToPropsType
+
+type mapStateToPropsType={
+    sidebar:Array<sidebarType>
+}
+const mapStateToProps=(state:AppStateType):mapStateToPropsType=>{
+    return{
+        sidebar:state.sidebar
+    }
+}
+
+type mapDispatchToPropsType ={
+
+}
+const mapDispatchToProps=()=>{
+    return{}
+}
+
+export let NavbarContainer = connect(mapStateToProps, mapDispatchToProps)(Navbar)
