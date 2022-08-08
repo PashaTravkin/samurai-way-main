@@ -26,10 +26,10 @@ const ProfileReducer = (profileState:ProfilePageType=initializeProfileState, act
             let messageAdd = {id: 7, message: profileState.newText, likesCount: 6}
             profileState.postsData.push(messageAdd)
             profileState.newText = ''
-            return profileState
+            return {...profileState}
         case 'NEW_POST_TEXT':
             profileState.newText = action.newText
-            return profileState
+            return {...profileState}
         default :
             return profileState
     }

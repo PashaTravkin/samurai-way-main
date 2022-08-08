@@ -25,6 +25,7 @@ const Dialogs= (props:DialogsPropsType) => {
     debugger
 
     let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
+        debugger
         let text = e.currentTarget.value
         if (text) {
             props.onChangeMessage(text)

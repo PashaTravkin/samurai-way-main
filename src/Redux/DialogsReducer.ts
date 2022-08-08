@@ -59,10 +59,12 @@ let initializeDialogsState = {
 }
 
 const DialogsReducer = (dialogState:AppMessagePageType =initializeDialogsState , action:ActionsType):AppMessagePageType => {
+    debugger
+
     switch (action.type) {
         case 'NEW_MESSAGE_DIALOG_TEXT':
             dialogState.newMessageDialogText = action.newDialogText
-            return dialogState
+            return {...dialogState}
         case 'ADD_MESSAGE_DIALOG':
             let newMessageData = {
                 id: 7,
@@ -71,7 +73,7 @@ const DialogsReducer = (dialogState:AppMessagePageType =initializeDialogsState ,
             }
             dialogState.messagesData.push(newMessageData)
             dialogState.newMessageDialogText = ''
-            return dialogState
+            return {...dialogState}
         default:
             return dialogState
     }
@@ -79,9 +81,11 @@ const DialogsReducer = (dialogState:AppMessagePageType =initializeDialogsState ,
 
 export const addMessageDialogAC = () => ({type: 'ADD_MESSAGE_DIALOG'} as const)
 
-export const newMessageDialogTextAC = (text: string) => ({
+export const newMessageDialogTextAC = (text: string) => {
+    debugger
+    return {
     type: 'NEW_MESSAGE_DIALOG_TEXT',
     newDialogText: text
-} as const)
+} as const}
 
 export default DialogsReducer;

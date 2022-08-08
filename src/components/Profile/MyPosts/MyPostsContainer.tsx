@@ -1,28 +1,36 @@
 import React from "react";
-import {addPostAC, onChangeTextHandlerAC} from "../../../Redux/ProfileReducer";
+import {addPostAC, onChangeTextHandlerAC, ProfilePageType} from "../../../Redux/ProfileReducer";
 import {MyPosts} from "./MyPosts";
-import StoreContext from "../../../StoreContext";
+import {connect} from "react-redux";
+import {AppStateType} from "../../../Redux/ReduxStore";
+import {Dispatch} from "redux";
 
-export let MyPostsContainer= () => {
-    return (
-        <StoreContext.Consumer>{
-            (store)=> {
-                let state = store.getState().profilePage
-                let onClickAddPost = () => {
-                    let action=addPostAC()
-                    store.dispatch(action)
-                }
+export type MyPostsContainerPropsType = MapStateToPropsType & MapDispatchToPropsType
 
-                const onChangeTextHandler = (text:string) => {
-                    let action = onChangeTextHandlerAC(text)
-                    store.dispatch(action)
-                }
-                return(
-                    <MyPosts onClickAddPost={onClickAddPost} onChangeTextHandler={onChangeTextHandler} state={state}/>
-                )
-            }
-        }
-        </StoreContext.Consumer>
-    )
+type MapStateToPropsType={
+    profilePage:ProfilePageType
 }
+const mapStateToProps =(state:AppStateType):MapStateToPropsType=>{
+    return{
+        profilePage:state.profilePage
+    }
+}
+
+type MapDispatchToPropsType ={
+    onChangeTextHandler:(text:string)=>void
+    onClickAddPost:()=>void
+}
+const mapDispatchToProps =(dispatch:Dispatch):MapDispatchToPropsType=>{
+    return{
+        onChangeTextHandler:(text:string)=>{
+            let action = onChangeTextHandlerAC(text)
+            dispatch(action)},
+        onClickAddPost:()=>{
+            let action=addPostAC()
+            dispatch(action)
+        }
+    }
+}
+
+export let MyPostsContainer =connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 

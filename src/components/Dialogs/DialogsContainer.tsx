@@ -10,7 +10,6 @@ export type DialogsPropsType = MapStateToPropsType & MapDispatchToPropsType
 type MapStateToPropsType={
     dialogPages:AppMessagePageType
 }
-
 let mapStateToProps = (state:AppStateType):MapStateToPropsType => {
     debugger
     return {
@@ -22,8 +21,8 @@ type MapDispatchToPropsType ={
     onChangeMessage:(text: string)=>void
     onAddMessage:()=>void
 }
-
 let mapDispatchToProps = (dispatch:Dispatch):MapDispatchToPropsType => {
+    debugger
     return {
         onChangeMessage: (text: string) => {
             const action = newMessageDialogTextAC(text)
