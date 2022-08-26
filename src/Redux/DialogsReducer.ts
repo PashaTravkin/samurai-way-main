@@ -58,22 +58,23 @@ let initializeDialogsState = {
     newMessageDialogText: ''
 }
 
-const DialogsReducer = (dialogState:AppMessagePageType =initializeDialogsState , action:ActionsType):AppMessagePageType => {
+const DialogsReducer = (dialogState: AppMessagePageType = initializeDialogsState, action: ActionsType): AppMessagePageType => {
     debugger
 
     switch (action.type) {
         case 'NEW_MESSAGE_DIALOG_TEXT':
-            dialogState.newMessageDialogText = action.newDialogText
-            return {...dialogState}
+            return {...dialogState, newMessageDialogText: action.newDialogText}
         case 'ADD_MESSAGE_DIALOG':
             let newMessageData = {
                 id: 7,
                 message: dialogState.newMessageDialogText,
                 avatarMessage: 'https://rus-pic.ru/wp-content/uploads/2021/12/avatarki-dlja-malchikov-41-foto-e7202eb.jpg'
             }
-            dialogState.messagesData.push(newMessageData)
-            dialogState.newMessageDialogText = ''
-            return {...dialogState}
+            return {
+                ...dialogState,
+                messagesData: [...dialogState.messagesData, newMessageData],
+                newMessageDialogText: ''
+            }
         default:
             return dialogState
     }
@@ -84,8 +85,9 @@ export const addMessageDialogAC = () => ({type: 'ADD_MESSAGE_DIALOG'} as const)
 export const newMessageDialogTextAC = (text: string) => {
     debugger
     return {
-    type: 'NEW_MESSAGE_DIALOG_TEXT',
-    newDialogText: text
-} as const}
+        type: 'NEW_MESSAGE_DIALOG_TEXT',
+        newDialogText: text
+    } as const
+}
 
 export default DialogsReducer;

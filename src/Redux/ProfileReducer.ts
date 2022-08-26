@@ -20,16 +20,13 @@ let initializeProfileState = {
     ]
 }
 
-const ProfileReducer = (profileState:ProfilePageType=initializeProfileState, action:ActionsType):ProfilePageType => {
+const ProfileReducer = (profileState: ProfilePageType = initializeProfileState, action: ActionsType): ProfilePageType => {
     switch (action.type) {
         case 'ADD_POST':
             let messageAdd = {id: 7, message: profileState.newText, likesCount: 6}
-            profileState.postsData.push(messageAdd)
-            profileState.newText = ''
-            return {...profileState}
+            return {...profileState, postsData: [...profileState.postsData, messageAdd], newText: ''}
         case 'NEW_POST_TEXT':
-            profileState.newText = action.newText
-            return {...profileState}
+            return {...profileState, newText: action.newText}
         default :
             return profileState
     }

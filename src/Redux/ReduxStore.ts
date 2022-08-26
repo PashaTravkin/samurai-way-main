@@ -15,4 +15,5 @@ export type StoreType = typeof store
 
 let store = createStore(rootReducer)
 
+
 export default store

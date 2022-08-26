@@ -1,7 +1,5 @@
-import {rerenderEntireTreeType} from "../index";
-import SidebarReducer from "./SidebarReducer";
-import ProfileReducer, {addPostAC, onChangeTextHandlerAC} from "./ProfileReducer";
-import DialogsReducer, {addMessageDialogAC, newMessageDialogTextAC} from "./DialogsReducer";
+import {addPostAC, onChangeTextHandlerAC} from "./ProfileReducer";
+import {addMessageDialogAC, newMessageDialogTextAC} from "./DialogsReducer";
 
 export type MyPostPropsType = {
     id: number,
@@ -54,7 +52,7 @@ export type allAppPropsType = {
 
 export type storeType = {
     _state: AppPropsType
-    subscribe: (observer: rerenderEntireTreeType) => void
+    subscribe: (observer:any) => void
     _callSubscriber: () => void
     getState: () => AppPropsType
     dispatch: (action: ActionsType) => void
