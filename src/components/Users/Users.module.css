@@ -1,0 +1,58 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    max-width: 80%;
+    margin-top: 20px;
+}
+
+
+.user{
+    display: flex;
+    width: 60%;
+    margin-bottom: 10px;
+
+
+
+}
+
+.buttonImg{
+    width: 25%;
+}
+
+.img{
+    max-height: 80px;
+    max-width: 80px;
+    /*border-radius: 50%;*/
+}
+
+.button{
+font-size: 10px;
+    max-width: 80px;
+}
+
+.infoUser{
+    padding: 5px 5px;
+    border: 1px solid;
+    border-radius: 5px;
+    border-width: 2px;
+    display: flex;
+    justify-content: space-between;
+    max-height: 80px;
+    min-width: 70%;
+    background-color: #b4fce4;
+    font-weight: bold;
+}
+
+.nameStatus{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+.location{
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+}

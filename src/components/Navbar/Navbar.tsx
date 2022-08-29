@@ -9,12 +9,12 @@ import {AppStateType} from "../../Redux/ReduxStore";
 
 
 export let Navbar = (props:NavbarPropsType) => {
-    debugger
     return (
         <>
             <nav className={s.itemBar}>
                 <div className={s.links}><NavLink activeClassName={s.active} to={'/profile'}>Profile</NavLink></div>
                 <div className={s.links}><NavLink activeClassName={s.active} to={'/dialogs'}>Message</NavLink></div>
+                <div className={s.links}><NavLink activeClassName={s.active} to={'/users'}>Users</NavLink></div>
                 <div className={s.links}><NavLink activeClassName={s.active} to={'/news'}>News</NavLink></div>
                 <div className={s.links}><NavLink activeClassName={s.active} to={'/music'}>Music</NavLink></div>
                 <div className={s.links}><NavLink activeClassName={s.active} to={'/settings'}>Settings</NavLink></div>

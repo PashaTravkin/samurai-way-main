@@ -59,7 +59,6 @@ let initializeDialogsState = {
 }
 
 const DialogsReducer = (dialogState: AppMessagePageType = initializeDialogsState, action: ActionsType): AppMessagePageType => {
-    debugger
 
     switch (action.type) {
         case 'NEW_MESSAGE_DIALOG_TEXT':
