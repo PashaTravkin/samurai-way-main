@@ -2,31 +2,32 @@ import React, {ChangeEvent} from "react";
 import {Post} from "./Post/Post";
 import {MyPostsContainerPropsType} from "./MyPostsContainer";
 
-export let MyPosts = (props:MyPostsContainerPropsType) => {
+export class MyPosts extends React.Component<MyPostsContainerPropsType>{
 
-    let onClickAddPost = () => {
-        props.onClickAddPost()
+    onClickAddPost = () => {
+        this.props.onClickAddPost()
     }
 
-    const onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-    debugger
+   onChangeTextHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
-        props.onChangeTextHandler(text)
+        this.props.onChangeTextHandler(text)
     }
-
+render(){
     return (
         <div>
             <h3>My post</h3>
             <div>
                 <div>
-                    <textarea value={props.profilePage.newText} onChange={onChangeTextHandler} name="posts" id="1"></textarea>
+                    <textarea value={this.props.profilePage.newText} onChange={this.onChangeTextHandler} name="posts" id="1"></textarea>
                 </div>
                 <div>
-                    <button onClick={onClickAddPost}>Send post</button>
+                    <button onClick={this.onClickAddPost}>Send post</button>
                 </div>
             </div>
-            {props.profilePage.postsData.map(p => <Post id={p.id} postData={p.message} likesCount={p.likesCount}/>)}
+            {this.props.profilePage.postsData.map(p => <Post id={p.id} postData={p.message} likesCount={p.likesCount}/>)}
         </div>
     )
+}
+
 }
 
