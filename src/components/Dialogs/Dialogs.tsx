@@ -4,39 +4,40 @@ import {Message} from "./Message/Message";
 import {DialogItem} from "./DialogItem/DialogItem";
 import {DialogsPropsType} from "./DialogsContainer";
 
-const Dialogs = (props: DialogsPropsType) => {
-    debugger
-    let onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
-        debugger
+class Dialogs extends React.Component<DialogsPropsType>{
+    onChangeHandler = (e: ChangeEvent<HTMLTextAreaElement>) => {
         let text = e.currentTarget.value
         if (text) {
-            props.onChangeMessage(text)
+            this.props.onChangeMessage(text)
         }
     }
 
-    const onClickAddMessage = () => {
-        props.onAddMessage()
+    onClickAddMessage = () => {
+        this.props.onAddMessage()
     }
 
-    return (
-        <>
-            <div className={s.dialogs}>
-                <div className={s.dialogsItems}>
-                    {props.dialogPages.dialogsData.map(d => <DialogItem key={d.id} avatar={d.avatar} name={d.name}
-                                                                        id={d.id}/>)}
+    render(){
+        return (
+            <>
+                <div className={s.dialogs}>
+                    <div className={s.dialogsItems}>
+                        {this.props.dialogPages.dialogsData.map(d => <DialogItem key={d.id} avatar={d.avatar} name={d.name}
+                                                                            id={d.id}/>)}
+                    </div>
+                    <div className={s.messages}>
+                        {this.props.dialogPages.messagesData.map(m =>
+                            <Message key={m.id} message={m.message} avatar={m.avatarMessage}/>)}
+                    </div>
                 </div>
-                <div className={s.messages}>
-                    {props.dialogPages.messagesData.map(m =>
-                        <Message key={m.id} message={m.message} avatar={m.avatarMessage}/>)}
-                </div>
-            </div>
 
-            <div className={s.addMessage}>
-                <textarea value={props.dialogPages.newMessageDialogText} onChange={onChangeHandler} cols={40}
+                <div className={s.addMessage}>
+                <textarea value={this.props.dialogPages.newMessageDialogText} onChange={this.onChangeHandler} cols={40}
                           rows={5}></textarea>
-                <button onClick={onClickAddMessage}>add message</button>
-            </div>
-        </>
-    )
+                    <button onClick={this.onClickAddMessage}>add message</button>
+                </div>
+            </>
+        )
+    }
 }
+
 export default Dialogs
