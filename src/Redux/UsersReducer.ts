@@ -2,43 +2,18 @@ import {ActionsType} from "./ActionsType";
 
 export type UserType = {
     id: number,
-    fullName: string,
+    name: string,
     status: string,
+    photos:{small:string, large:string}
     followed: boolean,
-    location: { city: string, country: string },
-    img: string
+
 }
 export type UsersPageType = {
     users: Array<UserType>
 }
 
 let initializeUsersState = {
-    users: [
-        // {
-        //     id: 1,
-        //     fullName: 'Dima.K',
-        //     status: 'I am a big boss',
-        //     followed: true,
-        //     location: {city: 'Minsk', country: 'Belarus'},
-        //     img:'https://storage.myseldon.com/yugo/720_D4BEA7A6563A906B97E39D54FAE44967.png'
-        // },
-        // {
-        //     id: 2,
-        //     fullName: 'Pasha.T',
-        //     status: 'I am a big boss to',
-        //     followed: false,
-        //     location: {city: 'Moscow', country: 'Russia'},
-        //     img:'https://storage.myseldon.com/yugo/720_D4BEA7A6563A906B97E39D54FAE44967.png'
-        // },
-        // {
-        //     id: 3,
-        //     fullName: 'Lena.S',
-        //     status: 'I am a big boss to to',
-        //     followed: true,
-        //     location: {city: 'Kiev', country: 'Ukraine'},
-        //     img:'https://storage.myseldon.com/yugo/720_D4BEA7A6563A906B97E39D54FAE44967.png'
-        // }
-    ]
+    users: []
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {
