@@ -25,7 +25,7 @@ nav div a:hover {
     letter-spacing: 2px;
 }
 
-.active {
+.active  {
     font-family: "Arial Black";
     font-size: 25px;
     color: #fa0f63;
