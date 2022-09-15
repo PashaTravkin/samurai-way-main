@@ -21,7 +21,7 @@ type MapStateToPropsType = {
     currentPage:number
 }
 type MapDispatchToPropsType = {
-    onClick: (userID: number) => void
+    following: (userID: number) => void
     setUsers:(users:Array<UserType>)=>void
     setCurrentTarget:(currentPages:number)=>void
     setTotalUsersCount:(totalUsersCount:number)=>void
@@ -37,21 +37,22 @@ const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
     }
 }
 
-const mapDispatchToProps = (dispatch: Dispatch) => {
-    return {
-        onClick: (userID: number) => {
-            dispatch(followingAC(userID))
-        },
-        setUsers:(users:Array<UserType>)=> {
-            dispatch(setUsersAC(users))
-        },
-        setCurrentTarget:(currentPages:number)=>{
-            dispatch(setCurrentTargetAC(currentPages))
-        },
-        setTotalUsersCount:(totalUsersCount:number)=>{
-            dispatch(setTotalUsersCountAC(totalUsersCount))
-        }
-    }
-}
+// const mapDispatchToProps = (dispatch: Dispatch) => {
+//     return {
+//         onClick: (userID: number) => {
+//             dispatch(followingAC(userID))
+//         },
+//         setUsers:(users:Array<UserType>)=> {
+//             dispatch(setUsersAC(users))
+//         },
+//         setCurrentTarget:(currentPages:number)=>{
+//             dispatch(setCurrentTargetAC(currentPages))
+//         },
+//         setTotalUsersCount:(totalUsersCount:number)=>{
+//             dispatch(setTotalUsersCountAC(totalUsersCount))
+//         }
+//     }
+// }
 
-export let UsersContainer = connect(mapStateToProps, mapDispatchToProps)(Users)
+export let UsersContainer = connect(mapStateToProps,
+    {following:followingAC,setUsers:setUsersAC,setCurrentTarget:setCurrentTargetAC,setTotalUsersCount:setTotalUsersCountAC})(Users)

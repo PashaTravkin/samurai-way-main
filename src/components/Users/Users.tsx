@@ -51,7 +51,7 @@ class Users extends React.Component<UsersContainerType> {
                 <div className={s.wrapper}>
                     {
                         this.props.usersPage.users.map(u => {
-                            let onClickHandler = () => this.props.onClick(u.id)
+                            let onClickHandler = () => this.props.following(u.id)
                             return (
                                 <div className={s.user}>
                                     <div className={s.buttonImg}>
