@@ -2,57 +2,48 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {
     followingAC,
-    setCurrentTargetAC,
+    setCurrentTargetAC, setPreloaderAC,
     setTotalUsersCountAC,
     setUsersAC,
     UsersPageType,
     UserType
 } from "../../Redux/UsersReducer";
-import {Dispatch} from "redux";
-import Users from "./Users";
+import UsersAPI from "./UsersAPI";
 
 
 export type UsersContainerType = MapStateToPropsType & MapDispatchToPropsType
 
 type MapStateToPropsType = {
     usersPage: UsersPageType,
-    pageSize:number,
+    pageSize: number,
     totalUsersCount: number,
-    currentPage:number
+    currentPage: number,
+    preloader:boolean
 }
 type MapDispatchToPropsType = {
     following: (userID: number) => void
-    setUsers:(users:Array<UserType>)=>void
-    setCurrentTarget:(currentPages:number)=>void
-    setTotalUsersCount:(totalUsersCount:number)=>void
+    setUsers: (users: Array<UserType>) => void
+    setCurrentTarget: (currentPages: number) => void
+    setTotalUsersCount: (totalUsersCount: number) => void
+    setPreloader: (preloader: boolean) => void
 }
 
 
-const mapStateToProps = (state: AppStateType):MapStateToPropsType => {
+const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        usersPage:state.usersPage,
-        pageSize:state.usersPage.pageSize,
-        totalUsersCount:state.usersPage.totalUsersCount,
-        currentPage:state.usersPage.currentPage
+        usersPage: state.usersPage,
+        pageSize: state.usersPage.pageSize,
+        totalUsersCount: state.usersPage.totalUsersCount,
+        currentPage: state.usersPage.currentPage,
+        preloader:state.usersPage.isPreloader
     }
 }
 
-// const mapDispatchToProps = (dispatch: Dispatch) => {
-//     return {
-//         onClick: (userID: number) => {
-//             dispatch(followingAC(userID))
-//         },
-//         setUsers:(users:Array<UserType>)=> {
-//             dispatch(setUsersAC(users))
-//         },
-//         setCurrentTarget:(currentPages:number)=>{
-//             dispatch(setCurrentTargetAC(currentPages))
-//         },
-//         setTotalUsersCount:(totalUsersCount:number)=>{
-//             dispatch(setTotalUsersCountAC(totalUsersCount))
-//         }
-//     }
-// }
-
 export let UsersContainer = connect(mapStateToProps,
-    {following:followingAC,setUsers:setUsersAC,setCurrentTarget:setCurrentTargetAC,setTotalUsersCount:setTotalUsersCountAC})(Users)
+    {
+        following: followingAC,
+        setUsers: setUsersAC,
+        setCurrentTarget: setCurrentTargetAC,
+        setTotalUsersCount: setTotalUsersCountAC,
+        setPreloader:setPreloaderAC
+    })(UsersAPI)

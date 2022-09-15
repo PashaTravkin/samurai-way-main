@@ -13,13 +13,15 @@ export type UsersPageType = {
     pageSize:number,
     totalUsersCount:number,
     currentPage:number
+    isPreloader:boolean
 }
 
 let initializeUsersState = {
     users: [],
     pageSize:50,
     totalUsersCount:0,
-    currentPage:1
+    currentPage:1,
+    isPreloader:false
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {
@@ -39,6 +41,10 @@ const UsersReducer = (userState: UsersPageType = initializeUsersState, action: A
             return {...userState, currentPage:action.currentPage}
         case 'SET_TOTAL_USERS_COUNT':
             return {...userState, totalUsersCount:action.totalUsersCount}
+
+        case 'PRELOADER':
+            return {...userState, isPreloader:action.isPreloader}
+
         default:
             return userState
     }
@@ -69,6 +75,13 @@ export const setTotalUsersCountAC =(totalUsersCount:number)=>{
     return {
         type:'SET_TOTAL_USERS_COUNT',
         totalUsersCount:totalUsersCount
+    }as const
+}
+
+export const setPreloaderAC =(isPreloader:boolean)=>{
+    return {
+        type:'PRELOADER',
+        isPreloader:isPreloader
     }as const
 }
 
