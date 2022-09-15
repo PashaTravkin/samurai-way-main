@@ -9,11 +9,17 @@ export type UserType = {
 
 }
 export type UsersPageType = {
-    users: Array<UserType>
+    users: Array<UserType>,
+    pageSize:number,
+    totalUsersCount:number,
+    currentPage:number
 }
 
 let initializeUsersState = {
-    users: []
+    users: [],
+    pageSize:50,
+    totalUsersCount:0,
+    currentPage:1
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {
@@ -28,7 +34,11 @@ const UsersReducer = (userState: UsersPageType = initializeUsersState, action: A
                 })
             }
         case 'SET_USERS':
-       return  {...userState, users:[...userState.users, ...action.users]}
+       return  {...userState, users:[...action.users]}
+        case 'SET_CURRENT_TARGET':
+            return {...userState, currentPage:action.currentPage}
+        case 'SET_TOTAL_USERS_COUNT':
+            return {...userState, totalUsersCount:action.totalUsersCount}
         default:
             return userState
     }
@@ -46,8 +56,20 @@ export const setUsersAC =(users:Array<UserType>)=>{
         type:'SET_USERS',
         users:users
     }as const
+}
 
+export const setCurrentTargetAC =(currentPage:number)=>{
+    return {
+        type:'SET_CURRENT_TARGET',
+        currentPage:currentPage
+    }as const
+}
 
+export const setTotalUsersCountAC =(totalUsersCount:number)=>{
+    return {
+        type:'SET_TOTAL_USERS_COUNT',
+        totalUsersCount:totalUsersCount
+    }as const
 }
 
 export default UsersReducer;

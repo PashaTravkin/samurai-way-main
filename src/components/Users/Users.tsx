@@ -5,17 +5,49 @@ import axios from "axios";
 import ifUserNoPhoto from '../../assets/images/users.png'
 
 class Users extends React.Component<UsersContainerType> {
-    getUsers = () => {
-        if (this.props.usersPage.users.length === 0) {
-            axios.get("https://social-network.samuraijs.com/api/1.0/users").then((response) => {
+
+    componentDidMount() {
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
+            .then((response) => {
+                debugger
                 this.props.setUsers(response.data.items)
+                this.props.setTotalUsersCount(response.data.totalCount)
             })
-        }
     }
+
+    onClickHandler = (pageNumber: number) => {
+        this.props.setCurrentTarget(pageNumber)
+        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
+            .then((response) => {
+                this.props.setUsers(response.data.items)
+
+            })
+    }
+
     render() {
+        let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
+        let pages: Array<number> = []
+        for (let i = 1; i <= pageCount; i++) {
+            pages.push(i)
+        }
+
+
         return (
             <div>
-                <button onClick={this.getUsers}>getUsers</button>
+                <span className={s.wrapperP}>
+                    {pages.map((p, index) => {
+                    return (
+
+                        <span onClick={() => this.onClickHandler(p)} key={index}
+                              className={`${this.props.currentPage === p ? s.selectedPage : ''} ${s.item}`}>
+                        {p}
+                            {/*{p % 30 === 0 ? <br/> : ''}*/}
+                    </span>
+                    )
+                })}
+                </span>
+
+
                 <div className={s.wrapper}>
                     {
                         this.props.usersPage.users.map(u => {
@@ -23,7 +55,8 @@ class Users extends React.Component<UsersContainerType> {
                             return (
                                 <div className={s.user}>
                                     <div className={s.buttonImg}>
-                                        <img className={s.img} src={u.photos.small ? u.photos.small : ifUserNoPhoto}
+                                        <img className={s.img} src={u.photos.small ? u.photos.small : ifUserNoPhoto &&
+                                        u.photos.large ? u.photos.large : ifUserNoPhoto}
                                              alt="#"/>
                                         <div>
                                             <button className={s.button}

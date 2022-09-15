@@ -1,6 +1,6 @@
 import {addPostAC, onChangeTextHandlerAC} from "./ProfileReducer";
 import {addMessageDialogAC, newMessageDialogTextAC} from "./DialogsReducer";
-import {followingAC, setUsersAC} from "./UsersReducer";
+import {followingAC, setCurrentTargetAC, setTotalUsersCountAC, setUsersAC} from "./UsersReducer";
 
 export type ActionsType = AddPostActionType
     | NewPostTextActionType
@@ -8,6 +8,8 @@ export type ActionsType = AddPostActionType
     | AddMessageDialogActionType
     | FollowingType
     | SetUsersType
+    | setCurrentTargetType
+    | setTotalUsersCountType
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type NewPostTextActionType = ReturnType<typeof onChangeTextHandlerAC>
@@ -15,3 +17,5 @@ type NewMessageDialogTextActionType = ReturnType<typeof newMessageDialogTextAC>
 type AddMessageDialogActionType = ReturnType<typeof addMessageDialogAC>
 type FollowingType = ReturnType<typeof followingAC>
 type SetUsersType = ReturnType<typeof setUsersAC>
+type setCurrentTargetType = ReturnType<typeof setCurrentTargetAC>
+type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
