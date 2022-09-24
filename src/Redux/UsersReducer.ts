@@ -6,8 +6,10 @@ export type UserType = {
     status: string,
     photos:{small:string, large:string}
     followed: boolean,
-
 }
+
+
+
 export type UsersPageType = {
     users: Array<UserType>,
     pageSize:number,
@@ -21,7 +23,9 @@ let initializeUsersState = {
     pageSize:50,
     totalUsersCount:0,
     currentPage:1,
-    isPreloader:false
+    isPreloader:false,
+    chooseUser:[]
+
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {
@@ -41,10 +45,8 @@ const UsersReducer = (userState: UsersPageType = initializeUsersState, action: A
             return {...userState, currentPage:action.currentPage}
         case 'SET_TOTAL_USERS_COUNT':
             return {...userState, totalUsersCount:action.totalUsersCount}
-
         case 'PRELOADER':
             return {...userState, isPreloader:action.isPreloader}
-
         default:
             return userState
     }
@@ -84,5 +86,7 @@ export const setPreloaderAC =(isPreloader:boolean)=>{
         isPreloader:isPreloader
     }as const
 }
+
+
 
 export default UsersReducer;

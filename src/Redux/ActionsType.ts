@@ -1,6 +1,12 @@
-import {addPostAC, onChangeTextHandlerAC} from "./ProfileReducer";
+import {addPostAC, onChangeTextHandlerAC, setChooseUserProfileAC} from "./ProfileReducer";
 import {addMessageDialogAC, newMessageDialogTextAC} from "./DialogsReducer";
-import {followingAC, setCurrentTargetAC, setPreloaderAC, setTotalUsersCountAC, setUsersAC} from "./UsersReducer";
+import {
+    followingAC,
+    setCurrentTargetAC,
+    setPreloaderAC,
+    setTotalUsersCountAC,
+    setUsersAC
+} from "./UsersReducer";
 
 export type ActionsType = AddPostActionType
     | NewPostTextActionType
@@ -11,6 +17,7 @@ export type ActionsType = AddPostActionType
     | setCurrentTargetType
     | setTotalUsersCountType
     | setPreloaderACType
+    | setChooseUserProfileACType
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type NewPostTextActionType = ReturnType<typeof onChangeTextHandlerAC>
@@ -21,3 +28,4 @@ type SetUsersType = ReturnType<typeof setUsersAC>
 type setCurrentTargetType = ReturnType<typeof setCurrentTargetAC>
 type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
 type setPreloaderACType = ReturnType<typeof setPreloaderAC>
+type setChooseUserProfileACType = ReturnType<typeof setChooseUserProfileAC>

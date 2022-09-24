@@ -6,3 +6,18 @@
     margin-top: 20px;
     margin-bottom: 20px;
 }
+
+.description{
+    font-weight: bold;
+    font-size: 18px;
+}
+.subTitleForDescriptions{
+color: #fd4343;
+}
+
+.icon{
+    border-radius: 50%;
+    max-width: 30px;
+    max-height: 30px;
+    margin-right: 10px;
+}

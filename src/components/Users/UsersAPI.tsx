@@ -3,7 +3,6 @@ import {UsersContainerType} from "./UsersContainer";
 import axios from "axios";
 import Users from "./Users";
 import isPreload from "../../common/Reload-1s-200px.svg"
-import s from "./Users.module.css"
 import Preloader from "../Preloader/Preloader";
 
 class UsersAPI extends React.Component<UsersContainerType> {

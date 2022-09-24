@@ -2,6 +2,7 @@ import React from 'react';
 import s from './Users.module.css'
 import ifUserNoPhoto from '../../assets/images/users.png'
 import {UserType} from "../../Redux/UsersReducer";
+import {NavLink} from "react-router-dom";
 
 type usersType = {
     pages: Array<number>,
@@ -34,9 +35,11 @@ let Users = (props: usersType) => {
                         return (
                             <div className={s.user}>
                                 <div className={s.buttonImg}>
-                                    <img className={s.img} src={u.photos.small ? u.photos.small : ifUserNoPhoto &&
-                                    u.photos.large ? u.photos.large : ifUserNoPhoto}
-                                         alt="#"/>
+                                    <NavLink to={'/profile/{userId}'}>
+                                        <img className={s.img} src={u.photos.small ? u.photos.small : ifUserNoPhoto &&
+                                        u.photos.large ? u.photos.large : ifUserNoPhoto}
+                                             alt="#"/>
+                                    </NavLink>
                                     <div>
                                         <button className={s.button}
                                                 onClick={onClickHandler}>{u.followed ? 'FOLLOWED' : 'UNFOLLOWED'}</button>
