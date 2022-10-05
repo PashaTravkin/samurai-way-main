@@ -4,13 +4,24 @@ import axios from "axios";
 import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {chooseUserType, setChooseUserProfileAC} from "../../Redux/ProfileReducer";
+import {RouteComponentProps, withRouter} from "react-router-dom";
+
+type PasParamsType = {
+    userId:string // типизируем часть адресной строку браузера
+}
 
 export type ProfileContainerType = MapStateToPropsType & mapDispatchToPropsType
 
-class ProfileContainerAPI extends React.Component<ProfileContainerType> {
+type AllPropsType = RouteComponentProps<PasParamsType> & ProfileContainerType
+
+class ProfileContainerAPI extends React.Component<AllPropsType> {
     componentDidMount() {
         debugger
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/2`)
+        let userId = this.props.match.params.userId
+        if(!userId){
+            userId='2'
+        }
+        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
                 this.props.setChooseUserProfileAC(response.data)
             })
@@ -19,7 +30,6 @@ class ProfileContainerAPI extends React.Component<ProfileContainerType> {
     render() {
         return (
             <>
-
                 <Profile {...this.props}/>
             </>
         )
@@ -40,7 +50,11 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     }
 }
 
-export const ProfileContainer = connect(mapStateToProps, {setChooseUserProfileAC})(ProfileContainerAPI)
+let WithURLContainerComponent = withRouter(ProfileContainerAPI)
+
+export default connect(mapStateToProps, {setChooseUserProfileAC})(WithURLContainerComponent)
+
+
 
 // export let Profile= () => {
 //     return (
