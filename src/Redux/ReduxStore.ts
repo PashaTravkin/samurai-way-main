@@ -4,6 +4,7 @@ import DialogsReducer from "./DialogsReducer";
 import SidebarReducer from "./SidebarReducer";
 import UsersReducer from "./UsersReducer";
 import { legacy_createStore as createStore} from 'redux'
+import OuthReducer from "./AuthReducer";
 
 export type AppStateType = ReturnType<typeof rootReducer>
 
@@ -11,7 +12,8 @@ let rootReducer = combineReducers({
     profilePage: ProfileReducer,
     dialogsPage: DialogsReducer,
     sidebar: SidebarReducer,
-    usersPage:UsersReducer
+    usersPage:UsersReducer,
+    auth:OuthReducer
 })
 
 export type StoreType = typeof store

@@ -1,22 +1,33 @@
 header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 10px;
     position: relative;
     grid-area: header;
     background: cornflowerblue;
 }
 
 header span {
-    position: absolute;
-    top: 15px;
-    left: 30%;
+    /*position: absolute;*/
+    /*top: 15px;*/
+    /*left: 15%;*/
     font-family: Arial;
     font-size: 53px;
     letter-spacing: 7px;
 }
 
 .logo {
-    position: absolute;
-    top: 30%;
-    left: 1%;
+    height: 40px;
     width: 90px;
     border-radius: 60%;
+}
+
+.login {
+    font-size: 22px;
+}
+
+a {
+    text-decoration: none;
+    letter-spacing: 1px;
 }

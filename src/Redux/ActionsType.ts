@@ -7,6 +7,7 @@ import {
     setTotalUsersCountAC,
     setUsersAC
 } from "./UsersReducer";
+import {setAuthAC} from "./AuthReducer";
 
 export type ActionsType = AddPostActionType
     | NewPostTextActionType
@@ -18,6 +19,7 @@ export type ActionsType = AddPostActionType
     | setTotalUsersCountType
     | setPreloaderACType
     | setChooseUserProfileACType
+    | setAuthACType
 
 type AddPostActionType = ReturnType<typeof addPostAC>
 type NewPostTextActionType = ReturnType<typeof onChangeTextHandlerAC>
@@ -29,3 +31,4 @@ type setCurrentTargetType = ReturnType<typeof setCurrentTargetAC>
 type setTotalUsersCountType = ReturnType<typeof setTotalUsersCountAC>
 type setPreloaderACType = ReturnType<typeof setPreloaderAC>
 type setChooseUserProfileACType = ReturnType<typeof setChooseUserProfileAC>
+type setAuthACType = ReturnType<typeof setAuthAC>

@@ -19,7 +19,7 @@ class ProfileContainerAPI extends React.Component<AllPropsType> {
         debugger
         let userId = this.props.match.params.userId
         if(!userId){
-            userId='2'
+            userId=JSON.stringify(this.props.myId)
         }
         axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
             .then(response => {
@@ -38,6 +38,7 @@ class ProfileContainerAPI extends React.Component<AllPropsType> {
 
 type MapStateToPropsType = {
     chooseUser: chooseUserType
+    myId:number
 }
 
 export type mapDispatchToPropsType = {
@@ -46,27 +47,11 @@ export type mapDispatchToPropsType = {
 
 const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
     return {
-        chooseUser: state.profilePage.chooseUser
+        chooseUser: state.profilePage.chooseUser,
+        myId:state.auth.id
     }
 }
 
 let WithURLContainerComponent = withRouter(ProfileContainerAPI)
 
 export default connect(mapStateToProps, {setChooseUserProfileAC})(WithURLContainerComponent)
-
-
-
-// export let Profile= () => {
-//     return (
-//         < div className={classes.content}>
-//             <div className={classes.mainImgInContent}><img
-//                 src="https://besthqwallpapers.com/Uploads/31-3-2021/160338/thumb2-social-networks-blue-background-social-networks-icons-blue-light-globe-global-networks.jpg"
-//                 alt=""/></div>
-//             <div className={classes.workingArea}>
-//                 <ProfileInfo/>
-//                 <MyPostsContainer/>
-//             </div>
-//         </div>
-//     )
-// }
-
