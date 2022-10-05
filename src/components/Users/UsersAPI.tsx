@@ -2,7 +2,7 @@ import React from 'react';
 import {UsersContainerType} from "./UsersContainer";
 import axios from "axios";
 import Users from "./Users";
-import isPreload from "../../common/Reload-1s-200px.svg"
+
 import Preloader from "../Preloader/Preloader";
 
 class UsersAPI extends React.Component<UsersContainerType> {
@@ -32,7 +32,7 @@ class UsersAPI extends React.Component<UsersContainerType> {
         return (
             <>
                 {this.props.preloader ?
-                    <Preloader PreloaderIMG={isPreload}/> :
+                    <Preloader /> :
                     <Users pages={pages}
                            users={this.props.usersPage.users}
                            onClickHandler={this.onClickHandler}

@@ -35,7 +35,7 @@ let Users = (props: usersType) => {
                         return (
                             <div className={s.user}>
                                 <div className={s.buttonImg}>
-                                    <NavLink to={'/profile/{userId}'}>
+                                    <NavLink to={'/profile/' + u.id}>
                                         <img className={s.img} src={u.photos.small ? u.photos.small : ifUserNoPhoto &&
                                         u.photos.large ? u.photos.large : ifUserNoPhoto}
                                              alt="#"/>

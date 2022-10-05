@@ -1,8 +1,13 @@
 import classes from "./ProfileInfo.module.css";
 import React from "react";
 import {ProfileContainerType} from "../ProfileContainer";
+import Preloader from "../../Preloader/Preloader";
 
 export let ProfileInfo = (props: ProfileContainerType) => {
+    debugger
+    if(props.chooseUser.userId===0){
+        return <Preloader />
+    }
     return (
         <div className={classes.aboutMe}>
             <span className={classes.myPhoto}><img
