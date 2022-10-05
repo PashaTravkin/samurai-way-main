@@ -1,14 +1,11 @@
 import React from 'react';
-import isPreload from "../../common/Reload-1s-200px.svg";
+import isPreload from "../../common/Reload-1s-200px.svg"
 
-type PreloaderPropsType = {
-    PreloaderIMG:string
-}
 
-const Preloader = (props:PreloaderPropsType) => {
+const Preloader = () => {
     return (
             <div style={{marginLeft: '40%', marginTop: '10%'}}>
-                <img  src={props.PreloaderIMG} alt="#"/>
+                <img  src={isPreload} alt="#"/>
             </div>
     );
 };
