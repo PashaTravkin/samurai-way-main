@@ -16,7 +16,6 @@ type AllPropsType = RouteComponentProps<PasParamsType> & ProfileContainerType
 
 class ProfileContainerAPI extends React.Component<AllPropsType> {
     componentDidMount() {
-        debugger
         let userId = this.props.match.params.userId
         if(!userId){
             userId=JSON.stringify(this.props.myId)

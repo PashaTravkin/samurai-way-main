@@ -25,7 +25,6 @@ let initializeUsersState = {
     currentPage:1,
     isPreloader:false,
     chooseUser:[]
-
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {

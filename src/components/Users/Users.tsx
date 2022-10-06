@@ -3,6 +3,7 @@ import s from './Users.module.css'
 import ifUserNoPhoto from '../../assets/images/users.png'
 import {UserType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
 type usersType = {
     pages: Array<number>,
@@ -10,6 +11,7 @@ type usersType = {
     onClickHandler: (pageNumber: number) => void
     currentPage: number
     following: (userID: number) => void
+
 }
 
 let Users = (props: usersType) => {
@@ -31,7 +33,29 @@ let Users = (props: usersType) => {
             <div className={s.wrapper}>
                 {
                     props.users.map(u => {
-                        let onClickHandler = () => props.following(u.id)
+                        let onClickHandler = () => {
+                            u.followed ?
+
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
+                                    withCredentials: true,
+                                    headers: {"API-KEY": "f01b381b-4376-4ff2-8452-c680d96141e5"}
+                                }).then(response => {
+                                    debugger
+                                    if(response.data.resultCode===0){
+                                        props.following(u.id)
+                                    }
+                                }):
+
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
+                                    withCredentials: true,
+                                    headers: {"API-KEY": "f01b381b-4376-4ff2-8452-c680d96141e5"}
+                                }).then(response => {
+                                    debugger
+                                    if(response.data.resultCode===0){
+                                        props.following(u.id)
+                                    }
+                                })
+                        }
                         return (
                             <div className={s.user}>
                                 <div className={s.buttonImg}>
@@ -42,7 +66,7 @@ let Users = (props: usersType) => {
                                     </NavLink>
                                     <div>
                                         <button className={s.button}
-                                                onClick={onClickHandler}>{u.followed ? 'FOLLOWED' : 'UNFOLLOWED'}</button>
+                                                onClick={onClickHandler}>{u.followed ? 'UNFOLLOWED' : 'FOLLOWED'}</button>
                                     </div>
                                 </div>
                                 <div className={s.infoUser}>

@@ -36,6 +36,7 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
         preloader:state.usersPage.isPreloader
+
     }
 }
 

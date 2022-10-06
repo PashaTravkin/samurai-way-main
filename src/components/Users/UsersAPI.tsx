@@ -23,6 +23,7 @@ class UsersAPI extends React.Component<UsersContainerType> {
                 this.props.setUsers(response.data.items)
             })}
 
+
     render() {
         let pageCount = Math.ceil(this.props.totalUsersCount / this.props.pageSize)
         let pages: Array<number> = []

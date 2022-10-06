@@ -11,11 +11,13 @@ export type AllPropsType = mapStateToPropsType & mapDispatchToPropsType
 class HeaderContainer extends React.Component <AllPropsType> {
 
     componentDidMount = () => {
-        axios.get('https://social-network.samuraijs.com/api/1.1/auth/me', {withCredentials:true})// with credentials--с полномочиями для кроссдоменных запросов
+        axios.get('https://social-network.samuraijs.com/api/1.1/auth/me', {withCredentials: true})// with credentials--с полномочиями для кроссдоменных запросов
 
             .then(response => {
-
-                this.props.setAuthAC(response.data.data.id, response.data.data.email, response.data.data.login)
+                if (response.data.resultCode === 0) {
+                    let {id, email, login} = response.data.data
+                    this.props.setAuthAC(id, email, login)
+                }
                 debugger
             })
 
@@ -35,16 +37,18 @@ export type mapDispatchToPropsType = {
 
 
 export type mapStateToPropsType = {
-        id: number,
-        email: string,
-        login: string
+    id: number,
+    email: string,
+    login: string,
+    isAuth:boolean
 }
 
 let mapStateToProps = (state: AppStateType): mapStateToPropsType => {
     return {
-            id: state.auth.id,
-            email: state.auth.email,
-            login: state.auth.login
+        id: state.auth.id,
+        email: state.auth.email,
+        login: state.auth.login,
+        isAuth: state.auth.isAuth
     }
 }
 

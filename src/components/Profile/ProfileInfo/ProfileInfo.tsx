@@ -4,7 +4,6 @@ import {ProfileContainerType} from "../ProfileContainer";
 import Preloader from "../../Preloader/Preloader";
 
 export let ProfileInfo = (props: ProfileContainerType) => {
-    debugger
     if(props.chooseUser.userId===0){
         return <Preloader />
     }

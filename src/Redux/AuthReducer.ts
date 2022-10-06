@@ -9,17 +9,17 @@ export type AuthType = {
 }
 
 let initializeAuthState = {
-    isAuth:true,
-    id: 2,
-    email: 'blabla@bla.bla',
-    login: 'samurai'
+    isAuth:false,
+    id: 0,
+    email: '',
+    login: ''
 }
 
 const AuthReducer = (authState: AuthType = initializeAuthState, action: ActionsType): AuthType => {
     switch (action.type) {
         case 'SET_AUTH':
             return {
-                ...authState, ...action.data
+                ...authState, ...action.data, isAuth:true
             }
 
         default :
