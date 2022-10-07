@@ -4,6 +4,7 @@ import ifUserNoPhoto from '../../assets/images/users.png'
 import {UserType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
 import axios from "axios";
+import {usersAPI} from "../../api/api";
 
 type usersType = {
     pages: Array<number>,
@@ -36,22 +37,15 @@ let Users = (props: usersType) => {
                         let onClickHandler = () => {
                             u.followed ?
 
-                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {
-                                    withCredentials: true,
-                                    headers: {"API-KEY": "f01b381b-4376-4ff2-8452-c680d96141e5"}
-                                }).then(response => {
-                                    debugger
-                                    if(response.data.resultCode===0){
-                                        props.following(u.id)
-                                    }
-                                }):
+                                usersAPI.setUnfollowed(u.id)
+                                    .then(data => {
+                                        if (data.resultCode === 0) {
+                                            props.following(u.id)
+                                        }
+                                    }) :
 
-                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${u.id}`, {}, {
-                                    withCredentials: true,
-                                    headers: {"API-KEY": "f01b381b-4376-4ff2-8452-c680d96141e5"}
-                                }).then(response => {
-                                    debugger
-                                    if(response.data.resultCode===0){
+                                usersAPI.setFollowed(u.id).then(data => {
+                                    if (data.resultCode === 0) {
                                         props.following(u.id)
                                     }
                                 })
@@ -71,8 +65,8 @@ let Users = (props: usersType) => {
                                 </div>
                                 <div className={s.infoUser}>
                                     <div className={s.nameStatus}>
-                                        <span>{u.name}</span>
-                                        <span>{u.status ? u.status : 'status'}</span>
+                                        <span className={s.status}>{u.name}</span>
+                                        <span className={s.status}>{u.status ? u.status : 'status'}</span>
                                     </div>
                                     <div className={s.location}>
                                         <div>{'u.location.country'}</div>

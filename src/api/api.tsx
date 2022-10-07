@@ -34,6 +34,13 @@ export let usersAPI = {
             instance.get(`profile/` + userId)
                 .then(response => response.data)
         )
+    },
+
+    authMe(){
+        return(
+            instance.get('https://social-network.samuraijs.com/api/1.0/auth/me')
+                .then(response=>response.data)
+        )
     }
 
 

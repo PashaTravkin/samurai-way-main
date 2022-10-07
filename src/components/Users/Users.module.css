@@ -44,10 +44,15 @@
     border-width: 2px;
     display: flex;
     justify-content: space-between;
-    max-height: 80px;
+    min-height: 30px;
     min-width: 70%;
     background-color: #b4fce4;
     font-weight: bold;
+}
+
+.status{
+    word-break: initial;
+    max-width: 30px ;
 }
 
 .nameStatus {
