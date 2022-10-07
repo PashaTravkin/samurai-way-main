@@ -1,27 +1,31 @@
 import React from 'react';
 import {UsersContainerType} from "./UsersContainer";
-import axios from "axios";
 import Users from "./Users";
 
 import Preloader from "../Preloader/Preloader";
+import {usersAPI} from "../../api/api";
 
 class UsersAPI extends React.Component<UsersContainerType> {
 
     componentDidMount() {
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`)
-            .then((response) => {
-                this.props.setUsers(response.data.items)
-                this.props.setTotalUsersCount(response.data.totalCount)
-            })}
+
+        usersAPI.getUsers(this.props.currentPage, this.props.pageSize)
+            .then((data) => {
+                this.props.setUsers(data.items)
+                this.props.setTotalUsersCount(data.totalCount)
+            })
+    }
 
     onClickHandler = (pageNumber: number) => {
         this.props.setCurrentTarget(pageNumber)
         this.props.setPreloader(true)
-        axios.get(`https://social-network.samuraijs.com/api/1.0/users?page=${pageNumber}&count=${this.props.pageSize}`)
-            .then((response) => {
-                response && this.props.setPreloader(false)
-                this.props.setUsers(response.data.items)
-            })}
+
+        usersAPI.getUsers(pageNumber, this.props.pageSize)
+            .then((data) => {
+                data && this.props.setPreloader(false)
+                this.props.setUsers(data.items)
+            })
+    }
 
 
     render() {
@@ -33,7 +37,7 @@ class UsersAPI extends React.Component<UsersContainerType> {
         return (
             <>
                 {this.props.preloader ?
-                    <Preloader /> :
+                    <Preloader/> :
                     <Users pages={pages}
                            users={this.props.usersPage.users}
                            onClickHandler={this.onClickHandler}
