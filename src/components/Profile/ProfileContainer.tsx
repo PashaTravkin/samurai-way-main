@@ -5,6 +5,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {chooseUserType, setChooseUserProfileAC} from "../../Redux/ProfileReducer";
 import {RouteComponentProps, withRouter} from "react-router-dom";
+import {usersAPI} from "../../api/api";
 
 type PasParamsType = {
     userId:string // типизируем часть адресной строку браузера
@@ -20,9 +21,9 @@ class ProfileContainerAPI extends React.Component<AllPropsType> {
         if(!userId){
             userId=JSON.stringify(this.props.myId)
         }
-        axios.get(`https://social-network.samuraijs.com/api/1.0/profile/` + userId)
-            .then(response => {
-                this.props.setChooseUserProfileAC(response.data)
+        usersAPI.setUserInProfile(userId)
+            .then(data => {
+                this.props.setChooseUserProfileAC(data)
             })
     }
 
