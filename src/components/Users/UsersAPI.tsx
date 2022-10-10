@@ -43,6 +43,8 @@ class UsersAPI extends React.Component<UsersContainerType> {
                            onClickHandler={this.onClickHandler}
                            currentPage={this.props.currentPage}
                            following={this.props.following}
+                           disable={this.props.disable}
+                           setDisable={this.props.setDisable}
                     />}
             </>
         )

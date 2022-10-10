@@ -2,7 +2,7 @@ import React from 'react';
 import axios from "axios";
 
 const instance = axios.create({
-    withCredentials: true,
+    withCredentials: true,  //with credentials--с полномочиями для кроссдоменных запросов
     baseURL: `https://social-network.samuraijs.com/api/1.0/`,
     headers: {"API-KEY": "f01b381b-4376-4ff2-8452-c680d96141e5"}
 })
@@ -42,7 +42,5 @@ export let usersAPI = {
                 .then(response=>response.data)
         )
     }
-
-
 }
 

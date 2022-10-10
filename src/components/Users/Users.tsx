@@ -3,7 +3,6 @@ import s from './Users.module.css'
 import ifUserNoPhoto from '../../assets/images/users.png'
 import {UserType} from "../../Redux/UsersReducer";
 import {NavLink} from "react-router-dom";
-import axios from "axios";
 import {usersAPI} from "../../api/api";
 
 type usersType = {
@@ -12,6 +11,8 @@ type usersType = {
     onClickHandler: (pageNumber: number) => void
     currentPage: number
     following: (userID: number) => void
+    disable: boolean
+    setDisable: (disable: boolean) => void
 
 }
 
@@ -35,16 +36,20 @@ let Users = (props: usersType) => {
                 {
                     props.users.map(u => {
                         let onClickHandler = () => {
+                            props.setDisable(true)
                             u.followed ?
 
                                 usersAPI.setUnfollowed(u.id)
                                     .then(data => {
+                                        props.setDisable(false)
                                         if (data.resultCode === 0) {
+
                                             props.following(u.id)
                                         }
                                     }) :
 
                                 usersAPI.setFollowed(u.id).then(data => {
+                                    props.setDisable(false)
                                     if (data.resultCode === 0) {
                                         props.following(u.id)
                                     }
@@ -60,7 +65,8 @@ let Users = (props: usersType) => {
                                     </NavLink>
                                     <div>
                                         <button className={s.button}
-                                                onClick={onClickHandler}>{u.followed ? 'UNFOLLOWED' : 'FOLLOWED'}</button>
+                                                onClick={onClickHandler}
+                                                disabled={props.disable}>{u.followed ? 'UNFOLLOWED' : 'FOLLOWED'}</button>
                                     </div>
                                 </div>
                                 <div className={s.infoUser}>

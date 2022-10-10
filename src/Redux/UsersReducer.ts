@@ -1,4 +1,5 @@
 import {ActionsType} from "./ActionsType";
+import {isDisabled} from "@testing-library/user-event/dist/utils";
 
 export type UserType = {
     id: number,
@@ -16,6 +17,7 @@ export type UsersPageType = {
     totalUsersCount:number,
     currentPage:number
     isPreloader:boolean
+    isDisable:boolean
 }
 
 let initializeUsersState = {
@@ -24,7 +26,8 @@ let initializeUsersState = {
     totalUsersCount:0,
     currentPage:1,
     isPreloader:false,
-    chooseUser:[]
+    chooseUser:[],
+    isDisable:false
 }
 
 const UsersReducer = (userState: UsersPageType = initializeUsersState, action: ActionsType): UsersPageType => {
@@ -46,6 +49,8 @@ const UsersReducer = (userState: UsersPageType = initializeUsersState, action: A
             return {...userState, totalUsersCount:action.totalUsersCount}
         case 'PRELOADER':
             return {...userState, isPreloader:action.isPreloader}
+        case 'SET_DISABLE':
+        return {...userState, isDisable:action.isDisable}
         default:
             return userState
     }
@@ -83,6 +88,13 @@ export const setPreloaderAC =(isPreloader:boolean)=>{
     return {
         type:'PRELOADER',
         isPreloader:isPreloader
+    }as const
+}
+
+export const setDisableAC =(isDisable:boolean)=>{
+    return {
+        type:'SET_DISABLE',
+        isDisable
     }as const
 }
 

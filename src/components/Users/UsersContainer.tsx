@@ -2,7 +2,7 @@ import {connect} from "react-redux";
 import {AppStateType} from "../../Redux/ReduxStore";
 import {
     followingAC,
-    setCurrentTargetAC, setPreloaderAC,
+    setCurrentTargetAC, setDisableAC, setPreloaderAC,
     setTotalUsersCountAC,
     setUsersAC,
     UsersPageType,
@@ -18,7 +18,8 @@ type MapStateToPropsType = {
     pageSize: number,
     totalUsersCount: number,
     currentPage: number,
-    preloader:boolean
+    preloader:boolean,
+    disable:boolean
 }
 type MapDispatchToPropsType = {
     following: (userID: number) => void
@@ -26,6 +27,7 @@ type MapDispatchToPropsType = {
     setCurrentTarget: (currentPages: number) => void
     setTotalUsersCount: (totalUsersCount: number) => void
     setPreloader: (preloader: boolean) => void
+    setDisable:(disable:boolean)=>void
 }
 
 
@@ -35,7 +37,8 @@ const mapStateToProps = (state: AppStateType): MapStateToPropsType => {
         pageSize: state.usersPage.pageSize,
         totalUsersCount: state.usersPage.totalUsersCount,
         currentPage: state.usersPage.currentPage,
-        preloader:state.usersPage.isPreloader
+        preloader:state.usersPage.isPreloader,
+        disable:state.usersPage.isDisable
 
     }
 }
@@ -46,5 +49,6 @@ export let UsersContainer = connect(mapStateToProps,
         setUsers: setUsersAC,
         setCurrentTarget: setCurrentTargetAC,
         setTotalUsersCount: setTotalUsersCountAC,
-        setPreloader:setPreloaderAC
+        setPreloader:setPreloaderAC,
+        setDisable:setDisableAC
     })(UsersAPI)

@@ -12,7 +12,7 @@ export type AllPropsType = mapStateToPropsType & mapDispatchToPropsType
 class HeaderContainer extends React.Component <AllPropsType> {
 
     componentDidMount = () => {
-        usersAPI.authMe()// with credentials--с полномочиями для кроссдоменных запросов
+        usersAPI.authMe()
             .then(data => {
                 if (data.resultCode === 0) {
                     let {id, email, login} = data.data
